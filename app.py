@@ -25,15 +25,14 @@ if uploaded_file is not None:
     #Predict the class
     predictions = model.predict(img_array)
     index = np.argmax(predictions)
-    confidence = prediction[0][index]*100
-
+    confidence = predictions[0][index]*100
     #Class names
     class_names = [
              "Apple_AppleScab",
              "Apple_BlackRot",
              "Apple_Cedar_AppleRust",
              "Apple_Healthy",
-             "Cherry_Healthy",
+             "Cherry_Healthy",  
              "Cherry_PowderyMildew",
              "Corn_CommonRust",
              "Corn_GrayLeafSpot",
@@ -63,8 +62,9 @@ if uploaded_file is not None:
         st.success(plant_name+f" plant is healthy: No disease detected.")
     else: 
         st.write(f"The detected disease is: {class_names[index]}")
+    st.write(f"I am {confidence:.1f}% Confident my Response is Accurate")
     st.image(image,caption="Uploaded Image", use_column_width=True)
-
+     
     if st.button("Treatment Advice"):
         if class_names[index].endswith("Healthy"):
             st.info("No treatment needed. Your plant is healthy!")
@@ -87,4 +87,3 @@ if uploaded_file is not None:
         elif class_names[index].endswith("GrayLeafSpot"):
             st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
       
-
