@@ -25,7 +25,7 @@ if uploaded_file is not None:
     #Predict the class
     predictions = model.predict(img_array)
     index = np.argmax(predictions)
-    confidence = 
+    confidence = prediction[0][index]*100
 
     #Class names
     class_names = [
@@ -65,5 +65,26 @@ if uploaded_file is not None:
         st.write(f"The detected disease is: {class_names[index]}")
     st.image(image,caption="Uploaded Image", use_column_width=True)
 
-    
+    if st.button("Treatment Advice"):
+        if class_names[index].endswith("Healthy"):
+            st.info("No treatment needed. Your plant is healthy!")
+        elif class_names[index].endswith("AppleScab"):
+            st.warning("Apply fungicides containing captan or myclobutanil. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("Rust"):
+            st.warning("Use fungicides containing sulfur or copper-based products. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("PowderyMildew"):
+            st.warning("Apply fungicides containing neem oil or potassium bicarbonate. Increase air circulation around plants.")
+        elif class_names[index].endswith("LeafScorch"):
+            st.warning("Ensure proper watering and avoid overhead irrigation. Apply mulch to retain soil moisture.")
+        elif class_names[index].endswith("BacterialSpot"):
+            st.warning("Use copper-based bactericides. Remove and destroy infected plant parts.")
+        elif class_names[index].endswith("Rot"):
+            st.warning("Apply fungicides containing captan or myclobutanil. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("Blight"):
+            st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("Esca"):
+            st.warning("Prune and remove infected wood. Apply fungicides containing copper-based products.")
+        elif class_names[index].endswith("GrayLeafSpot"):
+            st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
+      
 
