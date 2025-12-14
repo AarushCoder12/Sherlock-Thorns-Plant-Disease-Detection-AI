@@ -1,10 +1,16 @@
 import streamlit as st
-import tensorflow as tf
+from tensorflow import keras
 from PIL import Image
 import numpy as np
 
-# Load the pre-trained model
-model=tf.keras.models.load_model("plant_ai.keras")
+# Cache the model loading to prevent reloading on every interaction
+@st.cache_resource
+def load_model():
+    model = keras.models.load_model("plant_ai.keras")
+    return model
+
+# Load the pre-trained model using the cached function
+model = load_model()
 
 #Website title and description
 st.title("Sherlock Thorns: Plant Disease Detection AI")
