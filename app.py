@@ -36,31 +36,43 @@ if uploaded_file is not None:
     class_names = [
              "Apple_AppleScab",
              "Apple_BlackRot",
-             "Apple_Cedar_AppleRust",
+             "Apple_AppleRust",
              "Apple_Healthy",
-             "Cherry_Healthy",  
+             "Blueberry_Healthy",
              "Cherry_PowderyMildew",
+             "Cherry_Healthy",  
+             "Corn_CercosporaLeafSpot",
              "Corn_CommonRust",
-             "Corn_GrayLeafSpot",
-             "Corn_Healthy",
              "Corn_NorthernLeafBlight",
+             "Corn_Healthy",
              "Grape_BlackRot",
              "Grape_Esca",
-             "Grape_Healthy",
              "Grape_LeafBlight",
+             "Grape_Healthy",
+             "Orange_Haunglongbing",
              "Peach_BacterialSpot",
              "Peach_Healthy",
              "Pepper_BacterialSpot",
              "Pepper_Healthy",
              "Potato_EarlyBlight",
-             "Potato_Healthy",
              "Potato_LateBlight",
-             "Strawberry_Healthy",
+             "Potato_Healthy",
+             "Raspberry_Healthy",
+             "Soybean_Healthy",
+             "Squash_PowderyMildew",
              "Strawberry_LeafScorch",
+             "Strawberry_Healthy",
              "Tomato_BacterialSpot",
              "Tomato_EarlyBlight",
-             "Tomato_Healthy",
              "Tomato_LateBlight",
+             "Tomato_Leaf_Mold",
+             "Tomato_Septoria_leaf_spot",
+             "Tomato_SpiderMites",
+             "Tomato_TargetSpot",
+             "Tomato_YellowLeafCurlVirus",
+             "Tomato__MosaicVirus",
+             "Tomato_Healthy",
+             
     ]
     st.subheader("Prediction")
     if class_names[index].endswith("Healthy"):
@@ -92,4 +104,19 @@ if uploaded_file is not None:
             st.warning("Prune and remove infected wood. Apply fungicides containing copper-based products.")
         elif class_names[index].endswith("GrayLeafSpot"):
             st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
-      
+        elif class_names[index].endswith("MosaicVirus"):
+            st.warning("Remove and destroy infected plants. Use disease-free planting material.")
+        elif class_names[index].endswith("SpiderMites"):
+            st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
+        elif class_names[index].endswith("Septoria_leaf_spot"):
+            st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("TargetSpot"):
+            st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("YellowLeafCurlVirus"):
+            st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
+        elif class_names[index].endswith("Leaf_Mold"):
+            st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
+        elif class_names[index].endswith("Haunglongbing"):
+            st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
+        else: 
+            st.warning("The disease is not recognized. Consult a plant expert for further advice.")
