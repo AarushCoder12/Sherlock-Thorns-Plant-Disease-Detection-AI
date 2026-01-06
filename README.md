@@ -13,7 +13,7 @@ A web-based application built with Streamlit that uses a deep learning model to 
 ## Prerequisites
 
 - Python 3.x
-- A pre-trained Keras model file named `plant_ai.keras` placed in the root directory.
+- A pre-trained Keras model file named `PlantAImodel_94_train_to_81_valid.keras` placed in the root directory.
 
 ## Setup & Installation
 

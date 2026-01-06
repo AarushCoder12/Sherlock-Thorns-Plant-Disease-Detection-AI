@@ -7,7 +7,7 @@ import cv2
 # Cache the model loading to prevent reloading on every interaction
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model("PlantAImodel(94% train to 81% valid).keras")
+    model = tf.keras.models.load_model("PlantAImodel_94_train_to_81_valid.keras")
     return model
 
 # Load the pre-trained model using the cached function
