@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+import cv2
 
 # Cache the model loading to prevent reloading on every interaction
 @st.cache_resource
