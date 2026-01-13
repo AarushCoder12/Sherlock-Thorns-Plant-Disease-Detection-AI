@@ -64,3 +64,19 @@ This script automates the installation of dependencies and starts the applicatio
 2.  Click the "Upload an image" button and select a JPG, PNG, or JPEG image of a plant leaf.
 3.  The application will display the prediction, the model's confidence, and the uploaded image.
 4.  Click the "Treatment Advice" button to get suggestions for how to handle the detected disease.
+
+## How to push changes to github
+1. Modify the files
+2. To see any modified files or status of the git repository
+
+    `git status`
+3. To commit changes to github
+
+    `git add <filename1> <filename2>`
+
+    `git commit -m "<Commit Message>"`
+
+    `git push`
+4. To get the latest changes from github
+
+    `git pull --rebase`
