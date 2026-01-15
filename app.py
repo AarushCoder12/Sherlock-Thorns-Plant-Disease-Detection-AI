@@ -2,12 +2,11 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
-# import cv2
 
 # Cache the model loading to prevent reloading on every interaction
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model("PlantAImodel_94_train_to_81_valid.keras")
+    model = tf.keras.models.load_model("PlantAImodel_final_Jan_11_4PM.keras")
     return model
 
 # Load the pre-trained model using the cached function
