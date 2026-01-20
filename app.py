@@ -195,14 +195,14 @@ elif app_mode == "Plant Disease Detection AI":
         # Output
         if class_names[index].endswith("Healthy"):
             plant_name = class_names[index].split("_")[0]
-            st.success(f"{plant_name} plant is healthy: No disease detected.")
+            st.write(f"{plant_name} plant is healthy: No disease detected.")
         else:
             plant_name = class_names[index].split("_")[0]
             disease = class_names[index].split("_")[1]
-            st.error(f"The detected disease for {plant_name} is {disease}")
+            st.write(f"The detected disease for {plant_name} is {disease}")
         
         st.write(f"I am {confidence:.1f}% confident my response is accurate.")
-        st.button("Treatment Advice")
+        
         if st.button("Treatment Advice"):
             if class_names[index].endswith("Healthy"):
                 st.info("No treatment needed. Your plant is healthy!")
