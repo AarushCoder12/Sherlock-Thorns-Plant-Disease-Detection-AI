@@ -200,44 +200,45 @@ elif app_mode == "Plant Disease Detection AI":
             plant_name = class_names[index].split("_")[0]
             disease = class_names[index].split("_")[1]
             st.error(f"The detected disease for {plant_name} is {disease}")
-
+        
         st.write(f"I am {confidence:.1f}% confident my response is accurate.")
-
-        if class_names[index].endswith("Healthy"):
-            st.info("No treatment needed. Your plant is healthy!")
-        elif class_names[index].endswith("AppleScab"):
-            st.warning("Apply fungicides containing captan or myclobutanil. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("Rust"):
-            st.warning("Use fungicides containing sulfur or copper-based products. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("PowderyMildew"):
-            st.warning("Apply fungicides containing neem oil or potassium bicarbonate. Increase air circulation around plants.")
-        elif class_names[index].endswith("LeafScorch"):
-            st.warning("Ensure proper watering and avoid overhead irrigation. Apply mulch to retain soil moisture.")
-        elif class_names[index].endswith("BacterialSpot"):
-            st.warning("Use copper-based bactericides. Remove and destroy infected plant parts.")
-        elif class_names[index].endswith("Rot"):
-            st.warning("Apply fungicides containing captan or myclobutanil. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("Blight"):
-            st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("Esca"):
-            st.warning("Prune and remove infected wood. Apply fungicides containing copper-based products.")
-        elif class_names[index].endswith("GrayLeafSpot"):
-            st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("MosaicVirus"):
-            st.warning("Remove and destroy infected plants. Use disease-free planting material.")
-        elif class_names[index].endswith("SpiderMites"):
-            st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
-        elif class_names[index].endswith("Septorialeafspot"):
-            st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("TargetSpot"):
-            st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("YellowLeafCurlVirus"):
-            st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
-        elif class_names[index].endswith("Leaf_Mold"):
-            st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
-        elif class_names[index].endswith("Haunglongbing"):
-            st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
-        elif class_names[index].endswith("CercosporaLeafSpot"): 
-            st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
+        st.button("Treatment Advice")
+        if st.button("Treatment Advice"):
+            if class_names[index].endswith("Healthy"):
+                st.info("No treatment needed. Your plant is healthy!")
+            elif class_names[index].endswith("AppleScab"):
+                st.warning("Apply fungicides containing captan or myclobutanil. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("Rust"):
+                st.warning("Use fungicides containing sulfur or copper-based products. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("PowderyMildew"):
+                st.warning("Apply fungicides containing neem oil or potassium bicarbonate. Increase air circulation around plants.")
+            elif class_names[index].endswith("LeafScorch"):
+                st.warning("Ensure proper watering and avoid overhead irrigation. Apply mulch to retain soil moisture.")
+            elif class_names[index].endswith("BacterialSpot"):
+                st.warning("Use copper-based bactericides. Remove and destroy infected plant parts.")
+            elif class_names[index].endswith("Rot"):
+                st.warning("Apply fungicides containing captan or myclobutanil. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("Blight"):
+                st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("Esca"):
+                st.warning("Prune and remove infected wood. Apply fungicides containing copper-based products.")
+            elif class_names[index].endswith("GrayLeafSpot"):
+                st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("MosaicVirus"):
+                st.warning("Remove and destroy infected plants. Use disease-free planting material.")
+            elif class_names[index].endswith("SpiderMites"):
+                st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
+            elif class_names[index].endswith("Septorialeafspot"):
+                st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("TargetSpot"):
+                st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("YellowLeafCurlVirus"):
+                st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
+            elif class_names[index].endswith("Leaf_Mold"):
+                st.warning("Apply fungicides containing chlorothalonil or mancozeb. Remove and destroy infected leaves.")
+            elif class_names[index].endswith("Haunglongbing"):
+                st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
+            elif class_names[index].endswith("CercosporaLeafSpot"): 
+                st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
     else:
         st.warning("Please upload an image to continue.")
