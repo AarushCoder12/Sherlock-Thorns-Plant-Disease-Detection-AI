@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+import streamlit.components.v1 as components
 
 # Cache the model loading to prevent reloading on every interaction
 @st.cache_resource
@@ -11,116 +12,196 @@ def load_model():
 
 # Load the pre-trained model using the cached function
 model = load_model()
+#Sidebar
+st.sidebar.title("Dashboard")
+app_mode = st.sidebar.selectbox("Choose the app mode",
+                                ["Home", "About App and Creators", "Plant Disease Detection AI"])
+if app_mode == "Home":
+# Home Page Content
+    html_content = """
+<style>
+    #heading {
+        text-align: center;
+        font-size: 2.5em;
+        color: #2c3e50;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    #paragraph {
+        text-align: center;
+        font-size: 1.1em;
+        color: rgb(8, 188, 149);
+        font-family: monospace;
+        white-space: pre-wrap;
+        margin: 20px 0;
+    }
+    .header-container {
+        text-align: center;
+        padding: 20px;
+    }
+    .instructions {
+        text-align: center;
+        font-size: 1.1em;
+        font-family: monospace;
+        line-height: 1.6;
+        margin: 20px 0;
+    }
+    .instructions ul {
+        text-align: left;
+        display: inline-block;
+    }
+    #list{
+    font-family:monospace;
+    text-align:center;
+    }
+   
+</style>
+<div class="header-container">
+    <h1 id="heading">Sherlock Thorns</h1>
+    <h2 id="heading">A Plant Disease Detection AI</h2>
+    <pre id="paragraph">The plants that our AI supports are: 
+Apple, Blueberry, Cherry, Corn, Grape, Orange, Peach, Pepper, Potato, Raspberry, Soybean, Squash, Strawberry, Tomato
+    </pre>
+</div>
 
-#Website title and description
-st.title("Sherlock Thorns: Plant Disease Detection AI")
-st.write("Upload an image of a plant leaf to detect diseases. The plant must be one of the following: Apple, Blueberry, Cherry, Corn, Grape, Orange, Peach, Pepper, Potato, Raspberry, Soybean, Squash, Strawberry, Tomato.")
+<div class="instructions">
+    <h3>How to Use Our AI:</h3>
+    <ul>
+        <li id="list">The two arrows in the top-left corner open the sidebar for easy navigation</li>
+        <li id="list">In the "About App and Creators" page, learn about the educators who created this AI</li>
+        <li id="list">In the "Plant Disease Detection AI" page, click "Browse files" to upload an image</li>
+        <li id="list">After uploading, the AI will detect the disease and show treatment advice</li>
+    </ul>
+</div>
+"""
 
+    st.markdown(html_content, unsafe_allow_html=True)
 
-##File uploader
-#uploaded_file = st.file_uploader("Upload an image", type=["jpg","png","jpeg"])
+    # Try to display background image if it exists
+    try:
+        background_image = Image.open("SherlockThornsBackround.png")
+        st.image(background_image, use_column_width=True)
+    except FileNotFoundError:
+        pass
+elif app_mode == "About App and Creators":
+    more_html_content= """
+    <style>
+        #Heading {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        #AboutUs {
+            text-align: center;
+            font-size: 1.1em;
+            color: #34495e;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+    <h1 id="Heading">About App and Creators</h1>
+    <body background-color:#07aa6e>
+    <pre id="AboutUs">This is Sherlock Thorns, our plant disease detective AI. We wanted to create a website to allow 
+    millions of farmers, ranchers, and everyday people to easily figure out the diseases of their plants. We were inspired 
+    by people, such as our parents who wanted to create a garden, however weren't able to find the diseases for their plant.
+    We also noticed that farmers with plenty of expertise were struggling to find the diseases of plants over plenty of 
+    acres of land. These reasons inspired us to create Sherlock Thorns, a plant disease detective AI.</pre>
+    </body>
+"""
+    st.markdown(more_html_content, unsafe_allow_html=True)
 
-#if uploaded_file is not None:
-#    # Open image
-#    image = Image.open(uploaded_file).convert("RGB")
-#    img = np.array(image)
+elif app_mode == "Plant Disease Detection AI":
+    even_more_html_content= """
+    <style>
+    #AI{
+    text-align:center;
+    font-size:150px;
+    color:2c3e50;
+    margin-bottom 10px;
+    }
+    </style>
 
- #    hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    <body>
+    <h1 id="AI"> Mr. Thorns: Our AI </h1>
+    </body>
+    """
+    st.markdown(even_more_html_content, unsafe_allow_html=True)
 
- #   # Define green color range (leaf)
- #   lower_green = np.array([15, 20, 20])
- #   upper_green = np.array([100, 255, 255])
+    #Website title and description
+    st.markdown("---")
+    st.write("Upload an image of a plant leaf to detect diseases.")
 
-#    # Create mask for leaf
-#    mask = cv2.inRange(hsv, lower_green, upper_green)
+    #File uploader
+    uploaded_file = st.file_uploader("Upload an image", type=["jpg","png","jpeg"])
 
-#    # Create black background
-#    black_bg = np.zeros_like(img)
-
-#    # Keep only leaf pixels
-#    segmented = cv2.bitwise_and(img, img, mask=mask)
-
-#    # Resize & normalize
-#   target_size = (224, 224)
-#    img_array = cv2.resize(segmented, target_size) / 255.0
- #   img_array = np.expand_dims(img_array, axis=0)
-
-    # Predict
- #   predictions = model.predict(img_array)
-#    index = np.argmax(predictions)
- #   confidence = predictions[0][index] * 100
-
-
-#File uploader
-uploaded_file = st.file_uploader("Upload an image", type=["jpg","png","jpeg"])
-
-if uploaded_file is not None:
-    #Open image
-    image = Image.open(uploaded_file)
-
-    #Resize and preprocess the image    
-    target_size = (224, 224)
-    img_array = np.array(image.resize(target_size)) / 255.0
-    img_array = np.expand_dims(img_array, axis=0)
-
-    #Predict the class
-    predictions = model.predict(img_array)
-    index = np.argmax(predictions)
-    confidence = predictions[0][index]*100
-
-    #Class names
+    # Class names
     class_names = [
-    "Apple_AppleScab",
-    "Apple_BlackRot",
-    "Apple_AppleRust",
-    "Apple_Healthy",
-    "Blueberry_Healthy",
-    "Cherry_PowderyMildew",
-    "Cherry_Healthy",  
-    "Corn_CercosporaLeaTfSpot",
-    "Corn_CommonRust",
-    "Corn_NorthernLeafBlight",
-    "Corn_Healthy",
-    "Grape_BlackRot",
-    "Grape_Esca",
-    "Grape_LeafBlight",
-    "Grape_Healthy",
-    "Orange_Haunglongbing",  
-    "Peach_BacterialSpot",
-    "Peach_Healthy",
-    "Pepper_BacterialSpot",
-    "Pepper_Healthy",#
-    "Potato_EarlyBlight",
-    "Potato_LateBlight",
-    "Potato_Healthy",
-    "Raspberry_Healthy",
-    "Soybean_Healthy",
-    "Squash_PowderyMildew",
-    "Strawberry_LeafScorch",
-    "Strawberry_Healthy",
-    "Tomato_BacterialSpot",
-    "Tomato_EarlyBlight",
-    "Tomato_LateBlight",
-    "Tomato_LeafMold",
-    "Tomato_SeptoriaLeafSpot",
-    "Tomato_SpiderMites",
-    "Tomato_TargetSpot",
-    "Tomato_YellowLeafCurlVirus",
-    "Tomato_MosaicVirus",   
-    "Tomato_Healthy",
-]
+        "Apple_AppleScab",
+        "Apple_BlackRot",
+        "Apple_AppleRust",
+        "Apple_Healthy",
+        "Blueberry_Healthy",
+        "Cherry_PowderyMildew",
+        "Cherry_Healthy",  
+        "Corn_CercosporaLeaTfSpot",
+        "Corn_CommonRust",
+        "Corn_NorthernLeafBlight",
+        "Corn_Healthy",
+        "Grape_BlackRot",
+        "Grape_Esca",
+        "Grape_LeafBlight",
+        "Grape_Healthy",
+        "Orange_Haunglongbing",  
+        "Peach_BacterialSpot",
+        "Peach_Healthy",
+        "Pepper_BacterialSpot",
+        "Pepper_Healthy",
+        "Potato_EarlyBlight",
+        "Potato_LateBlight",
+        "Potato_Healthy",
+        "Raspberry_Healthy",
+        "Soybean_Healthy",
+        "Squash_PowderyMildew",
+        "Strawberry_LeafScorch",
+        "Strawberry_Healthy",
+        "Tomato_BacterialSpot",
+        "Tomato_EarlyBlight",
+        "Tomato_LateBlight",
+        "Tomato_LeafMold",
+        "Tomato_SeptoriaLeafSpot",
+        "Tomato_SpiderMites",
+        "Tomato_TargetSpot",
+        "Tomato_YellowLeafCurlVirus",
+        "Tomato_MosaicVirus",   
+        "Tomato_Healthy",
+    ]
 
- 
-    if class_names[index].endswith("Healthy"):
-        plant_name = class_names[index].split("_")[0]
-        st.success(plant_name+f" plant is healthy: No disease detected.")
-    else: 
-        plant_name = class_names[index].split("_")[0]
-        st.write(f"The detected disease for {plant_name} is {class_names[index].split('_')[1]}")
-    st.write(f"I am {confidence:.1f}% Confident my Response is Accurate")
-    st.image(image,caption="Uploaded Image", use_column_width=True)
-     
-    if st.button("Treatment Advice"):
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file)
+        st.image(image, caption="Uploaded Image", use_column_width=True)
+
+        # Preprocess
+        target_size = (224, 224)
+        img_array = np.array(image.resize(target_size)) / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
+
+        # Predict
+        predictions = model.predict(img_array)
+        index = np.argmax(predictions)
+        confidence = predictions[0][index] * 100
+
+        # Output
+        if class_names[index].endswith("Healthy"):
+            plant_name = class_names[index].split("_")[0]
+            st.success(f"{plant_name} plant is healthy: No disease detected.")
+        else:
+            plant_name = class_names[index].split("_")[0]
+            disease = class_names[index].split("_")[1]
+            st.error(f"The detected disease for {plant_name} is {disease}")
+
+        st.write(f"I am {confidence:.1f}% confident my response is accurate.")
+
         if class_names[index].endswith("Healthy"):
             st.info("No treatment needed. Your plant is healthy!")
         elif class_names[index].endswith("AppleScab"):
@@ -157,3 +238,5 @@ if uploaded_file is not None:
             st.warning("Use insecticidal soap or neem oil. Increase humidity and water plants regularly.")
         elif class_names[index].endswith("CercosporaLeafSpot"): 
             st.warning("Apply fungicides containing azoxystrobin or pyraclostrobin. Remove and destroy infected leaves.")
+    else:
+        st.warning("Please upload an image to continue.")
