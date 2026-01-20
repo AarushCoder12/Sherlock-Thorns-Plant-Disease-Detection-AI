@@ -102,11 +102,12 @@ elif app_mode == "About App and Creators":
     </style>
     <h1 id="Heading">About App and Creators</h1>
     <body background-color:#07aa6e>
-    <pre id="AboutUs">This is Sherlock Thorns, our plant disease detective AI. We wanted to create a website to allow 
-    millions of farmers, ranchers, and everyday people to easily figure out the diseases of their plants. We were inspired 
-    by people, such as our parents who wanted to create a garden, however weren't able to find the diseases for their plant.
-    We also noticed that farmers with plenty of expertise were struggling to find the diseases of plants over plenty of 
-    acres of land. These reasons inspired us to create Sherlock Thorns, a plant disease detective AI.</pre>
+    <pre id="AboutUs">This is Sherlock Thorns, our plant disease detective AI. We created this website to help farmers, ranchers, gardeners, and everyday people 
+    easily identify diseases affecting their plants. Our inspiration came from real-life experiences, including our parents, who wanted to start a garden but struggled 
+    to identify diseases affecting their plants. We also noticed that even experienced farmers can have difficulty detecting plant diseases across large areas of land. 
+    These challenges motivated us to develop Sherlock Thorns, an AI-powered tool designed to make plant disease detection faster, more accurate, and more accessible for 
+    everyone.
+    </pre>
     </body>
 """
     st.markdown(more_html_content, unsafe_allow_html=True)
