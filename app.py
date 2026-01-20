@@ -65,7 +65,7 @@ Apple, Blueberry, Cherry, Corn, Grape, Orange, Peach, Pepper, Potato, Raspberry,
 </div>
 
 <div class="instructions">
-    <h3>How to Use Our AI:</h3>
+    <h3>How to Use Our Website:</h3>
     <ul>
         <li id="list">The two arrows in the top-left corner open the sidebar for easy navigation</li>
         <li id="list">In the "About App and Creators" page, learn about the educators who created this AI</li>
