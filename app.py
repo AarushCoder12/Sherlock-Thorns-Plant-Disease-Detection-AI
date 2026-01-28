@@ -133,10 +133,8 @@ elif app_mode == "Plant Disease Detection AI":
     #Website title and description
     st.markdown("---")
     st.write("Upload an image of a plant leaf to detect diseases.")
-
     #File uploader
     uploaded_file = st.file_uploader("Upload an image", type=["jpg","png","jpeg"])
-
     # Class names
     class_names = [
         "Apple_AppleScab",
@@ -203,7 +201,7 @@ elif app_mode == "Plant Disease Detection AI":
             st.write(f"The detected disease for {plant_name} is {disease}")
         
         st.write(f"I am {confidence:.1f}% confident my response is accurate.")
-        st.image(image, caption="Uploaded Image", use_column_width=True)
+        st.image(image, caption="Uploaded Image", width=200)
         
         if st.button("Treatment Advice"):
             if class_names[index].endswith("Healthy"):
