@@ -16,6 +16,7 @@ model = load_model()
 st.sidebar.title("Dashboard")
 app_mode = st.sidebar.selectbox("Choose the app mode",
                                 ["Home", "About App and Creators", "Plant Disease Detection AI"])
+# Home Page
 if app_mode == "Home":
 # Home Page Content
     html_content = """
@@ -79,7 +80,7 @@ Apple, Blueberry, Cherry, Corn, Grape, Orange, Peach, Pepper, Potato, Raspberry,
 
     # Try to display background image if it exists
     try:
-        background_image = Image.open("SherlockThornsBackround.png")
+        background_image = Image.open("SherlockThornsImage.jpeg")
         st.image(background_image, use_column_width=True)
     except FileNotFoundError:
         pass
@@ -180,7 +181,7 @@ elif app_mode == "Plant Disease Detection AI":
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
+
 
         # Preprocess
         target_size = (224, 224)
@@ -202,6 +203,7 @@ elif app_mode == "Plant Disease Detection AI":
             st.write(f"The detected disease for {plant_name} is {disease}")
         
         st.write(f"I am {confidence:.1f}% confident my response is accurate.")
+        st.image(image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("Treatment Advice"):
             if class_names[index].endswith("Healthy"):
